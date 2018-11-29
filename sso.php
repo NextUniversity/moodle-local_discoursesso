@@ -68,7 +68,7 @@ else {
     $SESSION->wantsurl = urldecode($wantsurl);
 }
 
-// Create SSOHelper and configure 
+// Create SSOHelper and configure
 $ssohelper = new Cviebrock\DiscoursePHP\SSOHelper();
 
 $ssohelper->setSecret($CFG->discoursesso_secret_key);
@@ -103,7 +103,7 @@ function user_role($userid){
 	$usercontext = context_user::instance($userid);
 	$roles=$DB->get_records_menu('role_assignments',array('userid'=>$userid),null,'id,roleid');
 	$roles = array_unique($roles);
-	
+
 	if (in_array("5", $roles)) { //student roleid 5
     $trust_lvl= 1;
 	}
@@ -119,7 +119,7 @@ function user_role($userid){
 		if ($userid == $admin->id) {
 			$isadmin = true; break;
 			}
-		} 
+		}
 			if ($isadmin) {
 					$trust_lvl= 4;
 				}
@@ -162,7 +162,7 @@ $extraparams = array(
 	'locale'   => user_locale($USER->lang),
 	'groups' => 'lang_'.group_lang($USER->lang),
 	'trust_level'=> user_role($USER->id)
-	
+
 	);
 
 // Generate user avatar url
@@ -174,6 +174,7 @@ if (($userpicture->user->picture > 0) || !empty($CFG->enablegravatar)) {
 }
 // Add the avatar if set.
 if (isset($useravatar)) {
+    $useravatar = str_replace('pluginfile.php', 'local/nextu_profileimage/pluginfile.php', $useravatar);
     $extraparams['avatar_url'] = $useravatar;
 }
 
