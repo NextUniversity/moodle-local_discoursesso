@@ -173,7 +173,7 @@ $userpicture = new user_picture($USER);
 $userpicture->size = 1; // Size f1.
 // Did the user upload an avatar or is gravatar enabled?
 if (($userpicture->user->picture > 0) || !empty($CFG->enablegravatar)) {
-	$extraparams['avatar_url'] =$CFG->wwwroot."/webservice/pluginfile.php/".$USER->id."/user/icon/f1?token=".$CFG->discoursesso_ws_token;
+	$extraparams['avatar_url'] =$CFG->wwwroot."/local/nextu_profileimage/pluginfile.php/".$USER->id."/user/icon/f1";
 }
 
 
