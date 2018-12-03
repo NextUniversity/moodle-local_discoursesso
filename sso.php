@@ -173,7 +173,9 @@ $userpicture = new user_picture($USER);
 $userpicture->size = 1; // Size f1.
 // Did the user upload an avatar or is gravatar enabled?
 if (($userpicture->user->picture > 0) || !empty($CFG->enablegravatar)) {
-	$extraparams['avatar_url'] =$CFG->wwwroot."/local/nextu_profileimage/pluginfile.php/".$userpicture->user->picture."/user/icon/f1";
+	$avatar = $userpicture->get_url($PAGE)->out(false);
+	$avatar = str_replace('pluginfile.php', 'local/nextu_profileimage/pluginfile.php', $avatar);
+	$extraparams['avatar_url'] = $avatar;
 }
 
 
